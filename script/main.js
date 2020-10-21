@@ -81,7 +81,7 @@ function notasAlumno() {
     let asignaturaBaja = '';
 
     let alumnoBuscado = alumnos.find(alumno => alumno.nombre == nombreAlumno);
-    if (alumnoBuscado == undefined) {
+    if (!alumnoBuscado) {
         let msgError = "El alumno " + nombreAlumno + " no existe";
         error(msgError);
     } else {
@@ -143,22 +143,26 @@ function alumnosCiudad() {
 
 function alumnosCurso() {
     reset();
-    let curso = prompt("Indica el curso", "2");
-    let existe = false;
-    infoTitulo.innerHTML = "Alumnos de " + curso + " curso";
     let contenido = '';
-
-    alumnos.forEach(alumno => {
+    let curso = prompt("Indica el curso", "2");
+    infoTitulo.innerHTML = "Alumnos de " + curso + " curso";
+    
+    const alumnosCurso = alumnos.filter(alumno => {
+        let result;
         let codigo = alumno.codigo;
         let codigoArray = codigo.split("-");
         if (codigoArray[1] == curso) {
-            contenido += alumno.nombre + "<br>";
-            existe = true;
+            result += alumno.nombre + "<br>";
         }
-    });
-    if (!existe) {
+        return result;
+    })
+    if (alumnosCurso.length == 0) {
         let msgError = "Ningún alumno pertenece a " + curso + " curso.";
         error(msgError);
+    } else {
+        alumnosCurso.forEach(alumno => {
+            contenido += alumno.nombre + "<br>";
+        });
     }
     infoContenido.innerHTML = contenido;
 }
