@@ -1,0 +1,81 @@
+header {
+  padding: 20px;
+  background-color: rgb(49, 121, 255);
+  margin-bottom: 15px;
+  -webkit-box-shadow: 0px -5px 22px 4px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 0px -5px 22px 4px rgba(0, 0, 0, 0.7);
+  box-shadow: 0px -5px 22px 4px rgba(0, 0, 0, 0.7);
+}
+
+.title {
+  color: white;
+  font-size: 30px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.boton {
+  padding: 10px;
+  margin-top: 5px;
+  cursor: pointer;
+  border-bottom: 2px solid rgb(49, 121, 255);
+  text-align: center;
+}
+
+.contenedor {
+  display: flex;
+}
+
+.nav {
+  -webkit-box-shadow: 6px 2px 14px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 6px 2px 14px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 6px 2px 14px 0px rgba(0, 0, 0, 0.75);
+}
+.boton-img {
+  width: 25px;
+}
+.boton-nombre {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 13px;
+}
+
+#info {
+  width: 80%;
+  margin-left: 40px;
+}
+
+#info-img {
+  text-align: center;
+}
+
+#info-titulo {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 23px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+#info-contenido {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-top: 30px;
+  line-height: 150%;
+  
+}
+
+.tabla-contenedor {
+  display: flex;
+  flex-wrap: wrap;
+}
+.tabla-notas {
+  border: 2px solid  rgb(49, 121, 255);
+  padding: 10px;
+  margin: 15px;
+  min-width: 150px;
+  -webkit-box-shadow: 6px 2px 14px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 6px 2px 14px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 6px 2px 14px 0px rgba(0, 0, 0, 0.75);
+}
+
+span {
+  font-weight: 600;
+}
+

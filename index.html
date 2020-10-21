@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arrays de Objetos</title>
+    <script src="./script/main.js"></script>
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h2 class="title">Gestión de alumnos</h2>
+    </header>
+
+    <div class="contenedor">
+      <ul class="nav">
+        <li class="boton" onclick="notasAlumno()"><img class="boton-img" src="./img/icons8_stationery_50px.png" alt="Notas de un alumno"><div class="boton-nombre">Notas alumno</div></li>
+        <li class="boton" onclick="subeUnPunto()"><img class="boton-img" src="./img/icons8_timezone_+1_50px.png" alt="Subir un punto en cada asignatura"><div class="boton-nombre">Asignatura +1</div>
+        </li>
+        <li class="boton" onclick="alumnosCiudad()"><img class="boton-img" src="./img/icons8_spain_map_100px.png" alt="Buscar alumnos de una ciudad"><div class="boton-nombre">Filtrar por ciudad</div></li>
+        <li class="boton" onclick="alumnosCurso()"><img class="boton-img" src="./img/icons8_search_in_list_50px.png" alt="Buscar alumnos de un curso"><div class="boton-nombre">Filtrar por curso</div></li>
+        <li class="boton" onclick="ordenaEdad()"><img class="boton-img" src="./img/icons8_numeric_50px.png" alt="Ordenar alumnos por edad"><div class="boton-nombre">Edad desc.</div></li>
+        <li class="boton" onclick="ordenaNombreAsc()"><img class="boton-img" src="./img/icons8_alphabetical_sorting_50px.png" alt="Ordenar alumnos por nombre ascendente"><div class="boton-nombre">Nombre asc.</div></li>
+        <li class="boton" onclick="ordenaNombreDesc()"><img class="boton-img" src="./img/icons8_alphabetical_sorting_2_50px.png" alt="Ordenar alumnos por nombre descendente">
+          <div class="boton-nombre">Nombre desc.</div>
+        </li>
+        <li class="boton" onclick="borraAlumno()"><img class="boton-img" src="./img/icons8_delete_user_male_50px_2.png" alt="Borrar alumno"><div class="boton-nombre">Borrar alumno</div></li>
+        <li class="boton" onclick="nuevoAlumno()"><img class="boton-img" src="./img/icons8_add_user_male_50px.png" alt="Nuevo alumno" /><div class="boton-nombre">Nuevo alumno</div></li>
+        <li class="boton" onclick="nuevaAsignatura()"><img class="boton-img" src="./img/icons8_add_list_50px.png" alt="Nueva asignatura"><div class="boton-nombre">Nueva asignatura</div></li>
+      </ul>
+
+      <div id="info">
+        <div id="info-img"></div>
+        <h3 id="info-titulo"><img src="./img/icons8_students_96px.png" alt="" width="600px"></h3>
+        <div id="info-contenido"></div>
+      </div>
+      
+    </div>
+  </body>
+</html>
