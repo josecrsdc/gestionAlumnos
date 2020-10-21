@@ -48,28 +48,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 'edad':30}
                 ];
             
-    
-
     infoTitulo = document.getElementById("info-titulo");
     infoImg = document.getElementById("info-img");
     infoContenido = document.getElementById("info-contenido");
-    
-    
-    
-    
 });
 
-function reset() {
-    console.clear();
-    infoImg.style = "display:none";
-}
-
-function error(msgError) {
-    infoImg.innerHTML = notFound;
-    infoImg.style = "display:block";
-    infoTitulo.innerHTML = msgError;
-    infoContenido.innerHTML = "";
-}
 
 function notasAlumno() {
     reset();
@@ -108,9 +91,11 @@ function subeUnPunto() {
     reset();
     let contenido = "<div class='tabla-contenedor'>";
     infoTitulo.innerHTML = "Notas de de los alumnos incrementadas en " + numIncrementos + " puntos:";
+    
     alumnos.forEach(alumno => {
         let calificacionesAlumno = alumno.calificaciones;
         contenido +="<div class='tabla-notas'><span>" +  alumno.nombre + ":</span><br>";
+
         calificacionesAlumno.forEach(calificacion => {
             calificacion.nota +=1;
             let asignatura = calificacion.asignatura; 
@@ -120,7 +105,6 @@ function subeUnPunto() {
     });
     infoContenido.innerHTML = contenido + "</div>";
     numIncrementos++;
-
 }
 
 function alumnosCiudad() {
@@ -168,70 +152,112 @@ function alumnosCurso() {
 }
 
 function ordenaEdad() {
-    console.clear();
-    infoTitulo.innerHTML = "Lista de alumnos ordenados por edad ascendente"
+    reset();
+    infoTitulo.innerHTML = "Lista de alumnos ordenados por edad ascendente";
     let contenido = "";
-    let nombre, edad, codigo, ciudad, calificaciones =[] , asignatura, nota;
-    // let edades = [];
+    let nombre, edad, codigo, ciudad, calificaciones, asignatura, nota;
 
-    // alumnos.forEach(alumno => {
-    //     edades.push({'nombre': alumno.nombre, 'edad': alumno.edad});
-    // });
-    // console.log(edades.sort((a, b) => a.edad - b.edad));
-
-    console.info(alumnos.sort((a, b) => a.edad - b.edad));
+    alumnos.sort((a, b) => a.edad - b.edad);
     alumnos.forEach(alumno => {
         nombre = alumno.nombre;
         edad = alumno.edad;
         codigo = alumno.codigo;
         ciudad = alumno.ciudad;
+        calificaciones =[];
         alumno.calificaciones.forEach(calificacion => {
             asignatura = calificacion.asignatura;
             nota = calificacion.nota;
-            calificaciones = asignatura + ': ' + nota + "<br>";
+            calificaciones += asignatura + ': ' + nota + "<br>";
         });
-        contenido += edad + nombre + codigo + ciudad + "<br> Calificaciones: " + calificaciones + "<br>";
+        contenido += "<hr />Edad: <span>" + edad + "</span><br>Nombre: " + nombre + "<br>Codigo: " + codigo + "<br>Ciudad: " + ciudad + "<br> Calificaciones: <br>" + calificaciones + "<br>";
 
     });
     infoContenido.innerHTML = contenido;
 }
 
 function ordenaNombreAsc() {
-    console.clear();
-    let nombres = [];
-    alumnos.forEach(alumno => {
-        nombres.push(alumno.nombre);
+    reset();
+    infoTitulo.innerHTML = "Lista de alumnos ordenados por nombre ascendente";
+    let contenido = "";
+    let nombre, edad, codigo, ciudad, calificaciones, asignatura, nota;
+    function compare(a, b) {
+        const nombreA = a.nombre.toUpperCase();
+        const nombreB = b.nombre.toUpperCase();
+      
+        let comparison = 0;
+        if (nombreA > nombreB) {
+          comparison = 1;
+        } else if (nombreA < nombreB) {
+          comparison = -1;
+        }
+        return comparison;
+      }
+      
+    alumnos.sort(compare).forEach(alumno => {
+        nombre = alumno.nombre;
+        edad = alumno.edad;
+        codigo = alumno.codigo;
+        ciudad = alumno.ciudad;
+        calificaciones =[];
+        alumno.calificaciones.forEach(calificacion => {
+            asignatura = calificacion.asignatura;
+            nota = calificacion.nota;
+            calificaciones += asignatura + ': ' + nota + "<br>";
+        });
+        contenido += "<hr />Nombre: <span>" + nombre + "</span><br>Nombre: " + edad + "<br>Codigo: " + codigo + "<br>Ciudad: " + ciudad + "<br> Calificaciones: <br>" + calificaciones + "<br>";
     });
-
-    console.log(nombres.sort());
+    infoContenido.innerHTML = contenido;
 }
 
 function ordenaNombreDesc() {
-    console.clear();
-    let nombres = [];
-    alumnos.forEach(alumno => {
-        nombres.push(alumno.nombre);
+    reset();
+    infoTitulo.innerHTML = "Lista de alumnos ordenados por nombre descendente";
+    let contenido = "";
+    let nombre, edad, codigo, ciudad, calificaciones, asignatura, nota;
+    function compare(a, b) {
+        const nombreA = a.nombre.toUpperCase();
+        const nombreB = b.nombre.toUpperCase();
+      
+        let comparison = 0;
+        if (nombreA > nombreB) {
+          comparison = -1;
+        } else if (nombreA < nombreB) {
+          comparison = 1;
+        }
+        return comparison;
+      }
+      
+    alumnos.sort(compare).forEach(alumno => {
+        nombre = alumno.nombre;
+        edad = alumno.edad;
+        codigo = alumno.codigo;
+        ciudad = alumno.ciudad;
+        calificaciones =[];
+        alumno.calificaciones.forEach(calificacion => {
+            asignatura = calificacion.asignatura;
+            nota = calificacion.nota;
+            calificaciones += asignatura + ': ' + nota + "<br>";
+        });
+        contenido += "<hr />Nombre: <span>" + nombre + "</span><br>Nombre: " + edad + "<br>Codigo: " + codigo + "<br>Ciudad: " + ciudad + "<br> Calificaciones: <br>" + calificaciones + "<br>";
     });
-    nombres = nombres.sort();
-    console.log(nombres.reverse());
+    infoContenido.innerHTML = contenido;
 }
 
 function borraAlumno() {
     console.clear();
     let nombreAlumno = capitalize(prompt("Nombre del alumno que desea borrar:", "ana"));
-    let existe = false;
-    alumnos.forEach((alumno, index) => {
-        if (alumno.nombre == nombreAlumno) {
-            alumnos.splice(index,1);
-            existe = true;
-        }
-    });
-
-    console.infoTitulo(alumnos);
     
-    if (!existe) {
-            console.log("El alumno no existe");
-        }
+    pos = alumnos.map(function(alumno) { return alumno.nombre; }).indexOf(nombreAlumno);
+    console.log(pos);
+    if (pos == -1) {
+        let msgError = "El alumno " + nombreAlumno + " no existe";
+        error(msgError);
+    } else {
+        alumnos.splice(pos,1)
+        ordenaNombreAsc();
+        infoTitulo.innerHTML = "Alumno " + nombreAlumno + " eliminado con exito";
+    }
+
 }
 
 function nuevoAlumno() {
@@ -274,10 +300,27 @@ function nuevaAsignatura() {
     }
 }
 
+
+
+
+
+
 function capitalize(word) {
     if (word != null) {
         word = word.toLowerCase();
         return word[0].toUpperCase() + word.slice(1);
     }
+}
+
+function reset() {
+    console.clear();
+    infoImg.style = "display:none";
+}
+
+function error(msgError) {
+    infoImg.innerHTML = notFound;
+    infoImg.style = "display:block";
+    infoTitulo.innerHTML = msgError;
+    infoContenido.innerHTML = "";
 }
 
