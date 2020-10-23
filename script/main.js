@@ -3,9 +3,14 @@ let infoContenido;
 let infoImg;
 let alumnos;
 let notFound = '<img src="./img/icons8_nothing_found_96px.png" alt=""></img>';
+let tabulacion = "&nbsp;&nbsp;&nbsp;&nbsp; - ";
 let numIncrementos = 1;
 
 document.addEventListener("DOMContentLoaded", function(event) {
+    infoTitulo = document.getElementById("info-titulo");
+    infoImg = document.getElementById("info-img");
+    infoContenido = document.getElementById("info-contenido");
+    
     alumnos=[{'codigo':'DAW-1-2020',
                 'nombre':'Pepe',
                 'ciudad':'Valencia',
@@ -47,10 +52,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
                                     ],
                 'edad':30}
                 ];
-            
-    infoTitulo = document.getElementById("info-titulo");
-    infoImg = document.getElementById("info-img");
-    infoContenido = document.getElementById("info-contenido");
 });
 
 function notasAlumno() {
@@ -115,7 +116,6 @@ function alumnosCiudad() {
     if (alumnosCiudad.length == 0) {
         let msgError = "No hay alumnos de " + ciudad;
         error(msgError);
-        console.log("No hay alumnos de " + ciudad);
     } else {
         alumnosCiudad.forEach(alumno => {
             contenido += alumno.nombre + "<br>";
@@ -166,7 +166,7 @@ function ordenaEdad() {
         alumno.calificaciones.forEach(calificacion => {
             asignatura = calificacion.asignatura;
             nota = calificacion.nota;
-            calificaciones += asignatura + ': ' + nota + "<br>";
+            calificaciones += tabulacion + asignatura + ': ' + nota + "<br>";
         });
         contenido += "<hr />Edad: <span>" + edad + "</span><br>Nombre: " + nombre + "<br>Codigo: " + codigo + "<br>Ciudad: " + ciudad + "<br> Calificaciones: <br>" + calificaciones + "<br>";
 
@@ -201,8 +201,9 @@ function ordenaNombreAsc() {
         alumno.calificaciones.forEach(calificacion => {
             asignatura = calificacion.asignatura;
             nota = calificacion.nota;
-            calificaciones += asignatura + ': ' + nota + "<br>";
+            calificaciones += tabulacion + asignatura + ': ' + nota + "<br>";
         });
+        
         contenido += "<hr />Nombre: <span>" + nombre + "</span><br>Nombre: " + edad + "<br>Codigo: " + codigo + "<br>Ciudad: " + ciudad + "<br> Calificaciones: <br>" + calificaciones + "<br>";
     });
     infoContenido.innerHTML = contenido;
@@ -235,7 +236,7 @@ function ordenaNombreDesc() {
         alumno.calificaciones.forEach(calificacion => {
             asignatura = calificacion.asignatura;
             nota = calificacion.nota;
-            calificaciones += asignatura + ': ' + nota + "<br>";
+            calificaciones += tabulacion + asignatura + ': ' + nota + "<br>";
         });
         contenido += "<hr />Nombre: <span>" + nombre + "</span><br>Nombre: " + edad + "<br>Codigo: " + codigo + "<br>Ciudad: " + ciudad + "<br> Calificaciones: <br>" + calificaciones + "<br>";
     });
@@ -247,7 +248,6 @@ function borraAlumno() {
     let nombreAlumno = capitalize(prompt("Nombre del alumno que desea borrar:", "ana"));
     
     pos = alumnos.map(function(alumno) { return alumno.nombre; }).indexOf(nombreAlumno);
-    console.log(pos);
     if (pos == -1) {
         let msgError = "El alumno " + nombreAlumno + " no existe";
         error(msgError);
@@ -295,11 +295,6 @@ function nuevaAsignatura() {
         infoContenido.innerHTML = contenido;
     }
 }
-
-
-
-
-
 
 function capitalize(word) {
     if (word != null) {
