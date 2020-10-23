@@ -243,7 +243,7 @@ function ordenaNombreDesc() {
 }
 
 function borraAlumno() {
-    console.clear();
+    reset();
     let nombreAlumno = capitalize(prompt("Nombre del alumno que desea borrar:", "ana"));
     
     pos = alumnos.map(function(alumno) { return alumno.nombre; }).indexOf(nombreAlumno);
@@ -260,42 +260,39 @@ function borraAlumno() {
 }
 
 function nuevoAlumno() {
-    console.clear();
+    reset();
     let codigo = prompt("Indica codigo del alumno: ", "DAW-2-2020");
     let nombre = capitalize(prompt("Indica nombre del alumno: ", "Jose"));
     let ciudad = capitalize(prompt("Indica ciudad del alumno: ", "Asturias"));
     let edad = parseInt(prompt("Indica edad del alumno: ", "31"));
 
     alumnos.push({'codigo': codigo, 'nombre': nombre, 'ciudad': ciudad, 'edad': edad, 'calificaciones': []});
-
-    console.log(alumnos);
+    ordenaNombreAsc();
 }
 
 function nuevaAsignatura() {
-    console.clear();
+    reset();
     let nombreAlumno = capitalize(prompt("Nombre del alumno:", "ana"));
-    let existe = false;
+    infoTitulo.innerHTML = "Notas de " + nombreAlumno;
+    let alumnoBuscado = alumnos.find(alumno => alumno.nombre == nombreAlumno);
 
-    alumnos.forEach(alumno => {
-        if (alumno.nombre == nombreAlumno) {
-            existe = true;
-            let asignaturaNueva = prompt("Indica la asignatura: ", "SMR").toUpperCase();
-            let notaNueva = parseInt(prompt("Indica la nota: ", 7));
-            let calificaciones = alumno.calificaciones;
-            
-            calificaciones.forEach((calificacion, index) => {
-                let asignatura = calificacion.asignatura;
-                if (asignatura == asignaturaNueva) {
-                    calificaciones.splice(index, 1);
-                }
-            });
-            alumno.calificaciones.push({'asignatura':asignaturaNueva,'nota':notaNueva});
-            console.log(alumno.calificaciones);
+    if (!alumnoBuscado) {
+        let msgError = "El alumno " + nombreAlumno + " no existe";
+        error(msgError);
+    } else {
+        let asignaturaIntroducida = prompt("Indica la asignatura: ", "SMR").toUpperCase();
+        let asignatura = alumnoBuscado.calificaciones.find(calificacion => calificacion.asignatura == asignaturaIntroducida);
+        let notaNueva = parseInt(prompt("Indica la nota: ", 7));
+        if (asignatura) {
+            asignatura.nota = notaNueva;
+        } else {
+            alumnoBuscado.calificaciones.push({'asignatura':asignaturaIntroducida,'nota':notaNueva});
         }
-    });
-
-    if (!existe) {
-        console.log("El alumno no existe");
+        let contenido = "";
+        alumnoBuscado.calificaciones.forEach(calificacion => {
+            contenido += calificacion.asignatura + " => " + calificacion.nota + "<br>";
+        });
+        infoContenido.innerHTML = contenido;
     }
 }
 
