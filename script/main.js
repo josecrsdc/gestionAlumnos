@@ -53,7 +53,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     infoContenido = document.getElementById("info-contenido");
 });
 
-
 function notasAlumno() {
     reset();
     let nombreAlumno = capitalize(prompt("Nombre del alumno:", "ana"));
